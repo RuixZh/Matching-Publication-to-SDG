@@ -136,7 +136,8 @@ class Trans_Hier_Matching(object):
             self.g_out = tf.reduce_sum(g_fc_out, -1)  # (B, G)
 
 val_result = {}
-for no in range(3,5):
+# 5-fold cross validation
+for no in range(5):
     timestamp = str(int(time.time()))
     out_dir = os.path.abspath(os.path.join(os.path.curdir, "runs", timestamp))
     # Checkpoint directory. Tensorflow assumes this directory already exists so we need to create it
