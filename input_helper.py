@@ -191,6 +191,31 @@ def evaluation(true_onehot_labels, predicted_onehot_labels, predicted_scores):
                                        y_score=np.array(predicted_scores), average='micro')
     return pre, rec, F, auc, prc
 
+def grid_search(true_labels, eval_scores):
+    '''
+    # eval_scores = np.array(eval_scores)
+    auc = roc_auc_score(y_true=np.array(true_labels),
+                        y_score=np.array(eval_scores), average='micro')
+    # precision, recall, thresholds = precision_recall_curve(np.array(true_labels), np.array(eval_scores))
+    # Calculate the average PR
+    prc = average_precision_score(y_true=np.array(true_labels),
+                                  y_score=np.array(eval_scores), average='micro')
+    print('roc_uc: {}, pr_auc: {}'.format(auc, prc))
+
+    '''
+    global eval_metrics
+    max_f1 = -0.01
+    eval_scores = np.array(eval_scores)
+    for t in [0.5]:
+        pred_label = (eval_scores > t).astype(int)
+        pre, rec, f1, roc, pr = evaluation(true_labels, np.array(pred_label), eval_scores)
+        if f1 > max_f1:
+            max_f1 = f1
+            max_t = t
+            eval_metrics = (pre, rec, f1, roc, pr)
+    print('Max metrics under threshold {}'.format(max_t))
+    print('\nprecision: {0[0]}, recall: {0[1]}, f1: {0[2]}, roc_uc: {0[3]}, pr_auc: {0[4]}'.format(eval_metrics))
+    return eval_metrics
 
 
 def main(data_path=None, overview_path=None, gt=False):
