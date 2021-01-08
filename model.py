@@ -230,10 +230,13 @@ for no in range(5):
                     tr_sc.append(j)
 
             g_scores = []
-
-
+            t_score = []
+            i_score = []
+            i_ = []
+            t_ = []
+            g_ = []
             ts_loss = 0.0
-            print('\n==========Validation start===========')
+            print('\n==========test start===========')
             length = len(test_batches)
             for i, (t, a, k, y) in enumerate(test_batches):
                 percent = 100 * (i+1)/length
@@ -251,12 +254,11 @@ for no in range(5):
                 ts_loss += l
                 for j in range(len(g_sc)):
                     g_scores.append(g_sc[j])
-                if i == 0:
-                    i_p = i_sc
-                    t_p = t_sc
-                    i_ = i_a
-                    t_ = t_a
-                    g_ = g_a
+                    i_score.append(i_sc[j])
+                    t_score.append(t_sc[j])
+                    i_.append(i_a[j])
+                    t_.append(t_a[j])
+                    g_.append(g_a[j])
 
             print('\n==============Metrics============')
             ts_loss = ts_loss/len(test_batches)
