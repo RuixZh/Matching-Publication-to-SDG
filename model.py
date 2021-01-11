@@ -183,7 +183,7 @@ for no in range(5):
     batches = [(train_t[i: i+bs], train_a[i: i+bs], train_k[i: i+bs], train_y[i: i+bs])
                for i in range(0, len(train_t), bs)]
     test_batches = [(test_t[i: i+bs], test_a[i: i+bs], test_k[i: i+bs], test_y[i: i+bs])
-                    for i in range(0, len(train_t), bs)]
+                    for i in range(0, len(test_t), bs)]
     with tf.Graph().as_default(), tf.device('/gpu:0'):
         os.environ['CUDA_VISIBLE_DEVICES'] = '0'
         session_conf = tf.ConfigProto(
