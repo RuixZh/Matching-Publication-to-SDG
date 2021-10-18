@@ -1,5 +1,4 @@
 # Matching Research Publications to SDG
-===
 
 The source code is for the paper: ”Matching Research Publications to the United Nations’ Sustainable Development Goals by Multi-Label-Learning with Hierarchical Categories" accepted in DSAA 2020 by Rui Zhang, Maéva Vignes, Ulrich Steiner, Arthur Zimek.
 
